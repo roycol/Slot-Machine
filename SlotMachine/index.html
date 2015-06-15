@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<!-- Author: Tom Tsiliopoulos -->
+<!-- App: CreateJS BoilerPlate -->
+<!-- Date: May 12, 2015 -->
+<!-- Description: A BoilerPlate (Template) for the CreateJS framework -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COMP397 - Slot Machine</title>
+    <!-- CSS Section -->
+    <link href="css/main.css" rel="stylesheet" />
+</head>
+<body onload="preload(); showPlayerStats();">
+    <!-- Game Container -->
+    <canvas id="canvas" width="481" height="591"></canvas>
+    <div class="group">
+        <div class="reel"></div>
+        <div class="reel"></div>
+        <div class="reel"></div>
+        <button class="btnSpin" id="btnSpin">spin</button>
+    </div>
+    <div class="dspGroup">
+        <input type="text" class="dsp" id="credits"/>
+        <input type="text" class="dsp" id="bet"/>
+        <input type="text" class="dsp" id="winnerPaid"/>
+    </div>
+
+    <!-- JavaScript Section -->
+    <script src="Scripts/lib/Stats.js"></script>
+    <script src="Scripts/lib/easeljs-0.8.0.min.js"></script>
+    <script src="Scripts/lib/tweenjs-0.6.0.min.js"></script>
+    <script src="Scripts/lib/soundjs-0.6.0.min.js"></script>
+    <script src="Scripts/lib/preloadjs-0.6.0.min.js"></script>
+
+    <!-- Game Scripts -->
+    <script src="config/constants.js"></script>
+    <script src="objects/label.js"></script>
+    <script src="objects/button.js"></script>
+    <script src="Scripts/game.js"></script>
+    <script src="Scripts/js/jquery-1.4.2.min.js"></script>
+    <script src="Scripts/js/slotmachine.js"></script>
+</body>
+</html>
