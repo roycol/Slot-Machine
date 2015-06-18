@@ -59,6 +59,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\audio\bet.wav" />
+    <Content Include="assets\audio\coin.mp3" />
+    <Content Include="assets\audio\begin.mp3" />
+    <Content Include="assets\audio\spin.wav" />
+    <Content Include="assets\audio\win.wav" />
     <Content Include="assets\images\atlas.png" />
     <Content Include="assets\images\button\betmax.png" />
     <Content Include="assets\images\button\betone.png" />

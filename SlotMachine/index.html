@@ -14,11 +14,18 @@
 <body onload="preload(); showPlayerStats();">
     <!-- Game Container -->
     <canvas id="canvas" width="481" height="591"></canvas>
+    <div id="winOrLose" class="winOrLose"></div>
     <div class="group">
         <div class="reel"></div>
         <div class="reel"></div>
         <div class="reel"></div>
-        <button class="btnSpin" id="btnSpin">spin</button>
+        <button class="fnBtn" id="btnReset">reset</button>
+        <button class="fnBtn" id="btnSpin">spin</button>
+    </div>
+    <div class="dspGroupLbl">
+        <div class="dspLbl">CREDITS</div>
+        <div class="dspLbl">BET</div>
+        <div class="dspLbl">WINNER PAID</div>
     </div>
     <div class="dspGroup">
         <input type="text" class="dsp" id="credits"/>

@@ -17,17 +17,17 @@ module objects {
             this.y = y;
 
             // creating event listeners for mouseover and mouseout events
-            this.on("mouseover", this.OnOver, this);
-            this.on("mouseout", this.OnOut, this);
+            //this.on("mouseover", this.OnOver, this);
+            //this.on("mouseout", this.OnOut, this);
         }
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         public OnOver(event: createjs.MouseEvent): void {
-            this.alpha = 0.8; // 80% opacity
+            this.alpha = 1.0; // 80% opacity
         }
 
         public OnOut(event: createjs.MouseEvent): void {
-            this.alpha = 1.0; // 100% opacity
+            this.alpha = 0.8; // 100% opacity
         }
 
     }

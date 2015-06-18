@@ -12,7 +12,7 @@ canvas {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
 }
 
-.btnSpin {
+.fnBtn {
     visibility:hidden;
 }
 
@@ -42,9 +42,30 @@ canvas {
     box-shadow: 0 2px 7px rgba(0,0,0,.3) inset, 0 0px 1px rgba(0,0,0,.2) inset;
   }
 
+.winOrLose {
+    position:absolute;left:80px;top:100px;
+    font:bold small-caps normal 50px HYShortSamul;
+}
+
+.dspGroupLbl{
+    display: inline-block;
+    position:absolute;left:45px;top:443px;
+}
+
 .dspGroup {
     display: inline-block;
     position:absolute;left:35px;top:460px;
+}
+
+.dspLbl {
+    float: left;    
+    width: 90px;
+    height: 30px;    
+    margin-right: 30px;
+    font-family:HYShortSamul;
+    font-size:18px;
+    color:#fefefe;
+    text-align:center;
 }
 
 .dsp {
@@ -59,6 +80,7 @@ canvas {
     border-width:medium;
     color:red;
     text-align:right;
+    font-family:HYShortSamul-Medium;
     font-size:large;
     padding-right:5px;
 }
