@@ -1,4 +1,13 @@
-﻿/// <reference path="typings/stats/stats.d.ts" />
+﻿/* 
+    * file name: index.html
+    * author's name: Roy Kim
+    * last modified by: Roy Kim
+    * date last modified: May 29, 2015
+    * program description: the WalkingDead scenario and step- by - step explanation.
+    * revision history: _v4
+*/
+
+/// <reference path="typings/stats/stats.d.ts" />
 /// <reference path="typings/easeljs/easeljs.d.ts" />
 /// <reference path="typings/tweenjs/tweenjs.d.ts" />
 /// <reference path="typings/soundjs/soundjs.d.ts" />
@@ -29,41 +38,43 @@ var atlas = {
     "images": ["assets/images/atlas.png"],
 
     "frames": [
-        [2, 2, 60, 61, 0, 0, 0],
-        [2, 65, 60, 61, 0, 0, 0],
-        [64, 2, 60, 61, 0, 0, 0],
-        [64, 65, 60, 61, 0, 0, 0],
-        [126, 2, 60, 61, 0, 0, 0],
-        [126, 65, 60, 61, 0, 0, 0],
-        [188, 2, 60, 61, 0, 0, 0],
-        [188, 65, 55, 55, 0, -8, -7],
-        [245, 65, 61, 46, 0, -5, -12],
-        [250, 2, 49, 57, 0, -11, -10],
-        [301, 2, 46, 58, 0, -13, -5],
-        [308, 62, 58, 44, 0, -7, -13],
-        [349, 2, 54, 47, 0, -7, -13],
-        [405, 2, 53, 66, 0, -9, -2],
-        [368, 70, 43, 53, 0, -13, -10],
-        [413, 70, 47, 47, 0, -11, -11]
+        [2, 2, 53, 66, 0, -9, -2],
+        [2, 70, 43, 53, 0, -13, -10],
+        [47, 70, 54, 47, 0, -7, -13],
+        [57, 2, 60, 61, 0, 0, 0],
+        [103, 65, 46, 58, 0, -13, -5],
+        [119, 2, 60, 61, 0, 0, 0],
+        [151, 65, 49, 57, 0, -11, -10],
+        [181, 2, 60, 61, 0, 0, 0],
+        [202, 65, 55, 55, 0, -8, -7],
+        [243, 2, 60, 61, 0, 0, 0],
+        [259, 65, 47, 47, 0, -11, -11],
+        [305, 2, 60, 61, 0, 0, 0],
+        [308, 65, 61, 46, 0, -5, -12],
+        [367, 2, 60, 61, 0, 0, 0],
+        [429, 2, 60, 61, 0, 0, 0],
+        [371, 65, 58, 44, 0, -7, -13],
+        [431, 65, 40, 40, 0, 0, 0]
     ],
 
     "animations": {
-        "betmax": [0],
-        "betone": [1],
-        "betten": [2],
-        "reset": [3],
-        "resetActive": [4],
-        "spin": [5],
-        "spinActive": [6],
-        "orange": [7],
-        "bigwin": [8],
-        "seven": [9],
-        "plum": [10],
-        "lemon": [11],
-        "banana": [12],
-        "bar": [13],
-        "peach": [14],
-        "watermelon": [15]
+        "bar": [0],
+        "peach": [1],
+        "banana": [2],
+        "betmax": [3],
+        "plum": [4],
+        "betone": [5],
+        "seven": [6],
+        "betten": [7],
+        "orange": [8],
+        "reset": [9],
+        "watermelon": [10],
+        "resetActive": [11],
+        "bigwin": [12],
+        "spin": [13],
+        "spinActive": [14],
+        "lemon": [15],
+        "power": [16]
     }
 };
 
@@ -76,6 +87,7 @@ var resetButton: objects.Button;
 var betoneButton: objects.Button;
 var bettenButton: objects.Button;
 var betmaxButton: objects.Button;
+var powerButton: objects.Button;
 
 /* Tally Variables */
 var grapes = 0;
@@ -111,7 +123,7 @@ function init() {
     stage = new createjs.Stage(canvas); // reference to the stage
     stage.enableMouseOver(20);
     createjs.Ticker.setFPS(60); // framerate 60 fps for the game
-    // event listener triggers 60 times every second
+    //event listener triggers 60 times every second
     createjs.Ticker.on("tick", gameLoop); 
 
     // calling main game function
@@ -128,7 +140,7 @@ function setupStats() {
     stats.domElement.style.left = '500px';
     stats.domElement.style.top = '10px';
 
-    document.body.appendChild(stats.domElement);
+    //document.body.appendChild(stats.domElement);
 }
 
 
@@ -178,7 +190,11 @@ function spinButtonClicked(event: createjs.MouseEvent) {
         alert("bet your credit first!!");
         return;;
     }
+}
 
+// Callback function that allows me to respond to button click events
+function powerButtonClicked(event: createjs.MouseEvent) {
+    window.close();
 }
 
 // function that set the spin button to be ready
@@ -251,7 +267,7 @@ function main() {
 
     createjs.Sound.play("begin");
 
-    var betVal = parseInt((<HTMLTextAreaElement>document.getElementById('bet')).value);
+    var betVal;
 
     // add in slot machine graphic
     background = new createjs.Bitmap(assets.getResult("background"));
@@ -266,6 +282,7 @@ function main() {
     betoneButton = new objects.Button("betone", 100, 500, false);
     stage.addChild(betoneButton);
     betoneButton.on("click", function (event) {
+        betVal = parseInt((<HTMLTextAreaElement>document.getElementById('bet')).value);
         betVal += 1;
         (<HTMLTextAreaElement>document.getElementById('bet')).value = betVal.toString();
         createjs.Sound.play("bet");
@@ -277,6 +294,7 @@ function main() {
     bettenButton = new objects.Button("betten", 170, 500, false);
     stage.addChild(bettenButton);
     bettenButton.on("click", function (event) {
+        betVal = parseInt((<HTMLTextAreaElement>document.getElementById('bet')).value);
         betVal += 10;
         (<HTMLTextAreaElement>document.getElementById('bet')).value = betVal.toString();
         createjs.Sound.play("bet");
@@ -287,6 +305,7 @@ function main() {
     betmaxButton = new objects.Button("betmax", 240, 500, false);
     stage.addChild(betmaxButton);
     betmaxButton.on("click", function (event) {
+        betVal = parseInt((<HTMLTextAreaElement>document.getElementById('bet')).value);
         betVal += 100;
         (<HTMLTextAreaElement>document.getElementById('bet')).value = betVal.toString();
         createjs.Sound.play("bet");
@@ -298,5 +317,10 @@ function main() {
     spinButton = new objects.Button("spin", 320, 500, false);
     stage.addChild(spinButton);
     spinButton.on("click", spinButtonClicked, this);
+
+    // add spinButton sprite
+    powerButton = new objects.Button("power", 412, 483, false);
+    stage.addChild(powerButton);
+    powerButton.on("click", powerButtonClicked, this);
         
 }

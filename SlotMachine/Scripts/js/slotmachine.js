@@ -2,6 +2,7 @@ var credits = 1000;
 var jackpot = 5000;
 var bet = 0;
 var winnerPaid = 0;
+var reels = [];
 
 var turn = 0;
 var winNumber = 0;
@@ -91,31 +92,38 @@ function checkRange(value, lowerBounds, upperBounds) {
 }
 
 /* When this function is called it determines the betLine results. */
-function Reels(val) {
-        
-    switch (val) {
-        case 0:  // watermelon
+function chkReels(idx, val) {
+     
+    //console.log(idx + ": " + reels[idx]);
+    //console.log(val + ": " + reels[idx][val]);
+
+    var icon = String(reels[idx][val]);
+    var iconName = icon.substring(icon.lastIndexOf("/icon/") + 6, icon.indexOf(".png"));
+    console.log(idx + "-iconName :" + iconName);
+    
+    switch (iconName) {
+        case "watermelon":  // watermelon
             watermelons++;
             break;
-        case 1: // peaches
+        case "peach": // peaches
             peaches++;
             break;
-        case 2: // banana
+        case "banana": // banana
             bananas++;
             break;
-        case 3: // orange
+        case "orange": // orange
             oranges++;
             break;
-        case 4: //  plum
+        case "plum": //  plum
             plums++;
             break;
-        case 5: //  bar
+        case "bar": //  bar
             bars++;
             break;
-        case 6: //  lemon
+        case "lemon": //  lemon
             lemons++;
             break;
-        case 7: //  seven
+        case "seven": //  seven
             sevens++;
             break;
     }
@@ -124,7 +132,7 @@ function Reels(val) {
 
 /* When this function is called it gets initial ramdom reels */
 function getRandomReels() {
-    var betLine = [" ", " ", " "];    
+    var betLine = [];    
     var outCome = [0, 0, 0];
     var temp, selectedIdx;
 
@@ -241,7 +249,7 @@ function getRandomReels() {
                 betLine[spin] = betContent;
                 break;
         }
-        
+               
     }
    
     return betLine;
@@ -321,21 +329,20 @@ function check() {
     }
     else if (bet > credits) {
         alert("You don't have enough Money to place that bet.");
+        $("#bet").val("0");
+        bet = 0;
     }
     else if (bet <= 0) {
         alert("All bets must be a positive $ amount.");
     }
     else if (bet <= credits) {
-        //spinResult = Reels();
-        //fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
-        //$("div#result>p").text(fruits);
-        determineWinnings();
-        turn++;
-        showPlayerStats();
+        return true;
     }
     else {
-        alert("Please enter a valid bet amount");
+        alert("Please enter a valid bet amount");        
     }
+
+    return false;
 
 }
 
@@ -350,14 +357,15 @@ var sm = (function(undefined){
 		height = 750,
 		speeds = [],
 		r = [],
-		reels = getRandomReels(),
 		$reels,
 		start;
+
+	reels = getRandomReels();
 
 	function init(){
 	    $reels = $('.reel').each(function (i, el) {
 	        //alert("i: " + reels[i]);
-			el.innerHTML = '<div><p>' + reels[i].join('</p><p>') + '</p></div><div><p>' + reels[i].join('</p><p>') + '</p></div>'
+	        el.innerHTML = '<div><p>' + reels[i].join('</p><p>') + '</p></div><div><p>' + reels[i].join('</p><p>') + '</p></div>'
 		});
         
 	    $('#btnReset').click(resetAll);
@@ -365,7 +373,9 @@ var sm = (function(undefined){
 	}
 
 	function action(){
-		if (start !== undefined) return;
+	    if (start !== undefined) return;
+
+	    if (!check()) return;
 		
 		for (var i = 0; i < 3; ++i) {
 		    speeds[i] = Math.random() + .5;
@@ -373,20 +383,6 @@ var sm = (function(undefined){
             
 			//alert(r[i]);
 		}
-        
-        /*
-		for (var i = 0; i < 3; ++i)
-		    $reels[i].scrollTop = 0;
-
-		for (var j = 0; j < reels[0].length; j++) {
-
-		    for (var i = 0; i < 3; ++i) 
-		        $reels[i].scrollTop = $reels[i].scrollTop + 92;
-
-		    alert(j);
-
-		}
-        */
 		
 		animate();
 	}
@@ -405,23 +401,17 @@ var sm = (function(undefined){
 		else {
 
 		    for (var i = 0; i < 3; ++i) {
-		        //alert(Math.floor($reels[i].scrollTop / 92));
-		        Reels(Math.floor($reels[i].scrollTop / 92));
+		        //alert("$reels[i].scrollTop: " + Math.floor($reels[i].scrollTop / 92));
+		        chkReels(i, Math.floor($reels[i].scrollTop / 92));
 		    }
 
 			start = undefined;
-			check();
+			
+			determineWinnings();
+			showPlayerStats();
+			
 		}
 	}
-
-	//function check(){
-	//	alert(
-	//		r[0] === r[1] && r[1] === r[2] ?
-	//			'You won! Enjoy your ' + reels[1][ (r[0] / 70 + 1) % 3 | 0 ].split(' ')[0]
-	//		:
-	//			'Try again'
-	//	);
-	//}
 
 	return {init: init}
 
