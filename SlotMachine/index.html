@@ -1,9 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<!-- Author: Tom Tsiliopoulos -->
-<!-- App: CreateJS BoilerPlate -->
-<!-- Date: May 12, 2015 -->
-<!-- Description: A BoilerPlate (Template) for the CreateJS framework -->
+<!--
+    * file name: index.html
+    * author's name: Roy Kim
+    * last modified by: Roy Kim
+    * date last modified: May 29, 2015
+    * description: index file for SlotMachine.
+    * revision history: _v5
+-->
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,11 +19,14 @@
 <body onload="preload(); showPlayerStats();">
     <!-- Game Container -->
     <canvas id="canvas" width="481" height="591"></canvas>
+    <!-- win Or lose msg which will be displayed on top of slotmachine-->
     <div id="winOrLose" class="winOrLose">Start with betting!!</div>
+    <!--jackpot-->
     <div class="jackpot">
         <div class="jackpotLbl">Jackpot</div>
         <input type="text" class="dsp" id="jackpot" />
     </div>
+    <!-- reels -->
     <div class="group">
         <div class="reel"></div>
         <div class="reel"></div>
@@ -26,11 +34,13 @@
         <button class="fnBtn" id="btnReset">reset</button>
         <button class="fnBtn" id="btnSpin">spin</button>
     </div>
+    <!-- Labels for credits, bet and winner paid -->
     <div class="dspGroupLbl">
         <div class="dspLbl">CREDITS</div>
         <div class="dspLbl">BET</div>
         <div class="dspLbl">WINNER PAID</div>
     </div>
+    <!-- textbox for credits, bet and winner paid -->
     <div class="dspGroup">
         <input type="text" class="dsp" id="credits"/>
         <input type="text" class="dsp" id="bet"/>

@@ -1,6 +1,5 @@
 ﻿/// <reference path="../scripts/typings/easeljs/easeljs.d.ts" />
 
-
 module objects {
     // BUTTON CLASS +++++++++++++++++++++++++++++
     export class Button extends createjs.Sprite {

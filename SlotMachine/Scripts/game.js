@@ -1,9 +1,9 @@
 /*
-    * file name: index.html
+    * file name: game.ts
     * author's name: Roy Kim
     * last modified by: Roy Kim
-    * date last modified: May 29, 2015
-    * program description: the WalkingDead scenario and step- by - step explanation.
+    * date last modified: June 20, 2015
+    * program description: entire design and functional connection parts of Slotmachine
     * revision history: _v4
 */
 /// <reference path="typings/stats/stats.d.ts" />
@@ -28,6 +28,7 @@ var manifest = [
     { id: "begin", src: "assets/audio/begin.mp3" },
     { id: "spin", src: "assets/audio/spin.wav" }
 ];
+// assign variables from Jason 
 var atlas = {
     "images": ["assets/images/atlas.png"],
     "frames": [
@@ -179,11 +180,11 @@ function readyToSpin() {
     spinButton.on("click", spinButtonClicked, this);
     btnActive(4, spinButton);
 }
-//begin btn animation
+// begin btn animation (btn will begin blinking in 0.5 sec interval)
 function btnActive(btnIdx, btn) {
-    //alert("btnActive");
     var flag = false;
     //alert(btnActiveAry[btnIdx]);
+    //in order to start blinking at the same time, stop all previous activated btn and restart it.
     for (var i = 0; i < btnActiveAry.length; i++) {
         if (btnActiveAry[i] > 0) {
             stopBtnActive(i);
@@ -212,6 +213,7 @@ function btnActive(btnIdx, btn) {
     if (!flag)
         btnActiveAry[btnIdx] = setInterval(function () { btnActiveRun(btn); }, 500);
 }
+// function for changing btn alpha.
 function btnActiveRun(btn) {
     if (btn.alpha == 0.8)
         btn.alpha = 1.0;
@@ -233,7 +235,7 @@ function main() {
     resetButton = new objects.Button("reset", 20, 500, false);
     stage.addChild(resetButton);
     resetButton.on("click", resetButtonClicked, this);
-    // add bet buttons
+    // add betoneButton sprite
     betoneButton = new objects.Button("betone", 100, 500, false);
     stage.addChild(betoneButton);
     betoneButton.on("click", function (event) {
@@ -244,6 +246,7 @@ function main() {
         readyToSpin();
     });
     btnActive(1, betoneButton);
+    // add bettenButton sprite
     bettenButton = new objects.Button("betten", 170, 500, false);
     stage.addChild(bettenButton);
     bettenButton.on("click", function (event) {
@@ -254,6 +257,7 @@ function main() {
         readyToSpin();
     });
     btnActive(2, bettenButton);
+    // add betmaxButton sprite
     betmaxButton = new objects.Button("betmax", 240, 500, false);
     stage.addChild(betmaxButton);
     betmaxButton.on("click", function (event) {
@@ -268,7 +272,7 @@ function main() {
     spinButton = new objects.Button("spin", 320, 500, false);
     stage.addChild(spinButton);
     spinButton.on("click", spinButtonClicked, this);
-    // add spinButton sprite
+    // add powerButton sprite
     powerButton = new objects.Button("power", 412, 483, false);
     stage.addChild(powerButton);
     powerButton.on("click", powerButtonClicked, this);

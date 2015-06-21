@@ -1,3 +1,12 @@
+/*
+    * file name: index.html
+    * author's name: Roy Kim
+    * last modified by: Roy Kim
+    * date last modified: May 29, 2015
+    * description: javascript for all functions and animation
+    * revision history: _v4
+*/
+
 var credits = 1000;
 var jackpot = 5000;
 var bet = 0;
@@ -317,8 +326,7 @@ function determineWinnings() {
 
 }
 
-/* When the player clicks the spin button the game kicks off */
-
+/* checking process before proceeding game. */
 function check() {
     bet = $("#bet").val();
     
@@ -349,7 +357,7 @@ function check() {
 
 
 /*
-	Slot Machine
+	Slot Machine (animation)
 */
 var sm = (function(undefined){
 
@@ -380,8 +388,6 @@ var sm = (function(undefined){
 		for (var i = 0; i < 3; ++i) {
 		    speeds[i] = Math.random() + .5;
 		    r[i] = Math.floor((Math.random() * 3 | 0) * height / 8);
-            
-			//alert(r[i]);
 		}
 		
 		animate();
