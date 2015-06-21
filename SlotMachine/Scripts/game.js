@@ -166,6 +166,7 @@ function spinButtonClicked(event) {
 }
 // Callback function that allows me to respond to button click events
 function powerButtonClicked(event) {
+    window.open('', '_self', '');
     window.close();
 }
 // function that set the spin button to be ready

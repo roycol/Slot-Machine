@@ -195,6 +195,7 @@ function spinButtonClicked(event: createjs.MouseEvent) {
 
 // Callback function that allows me to respond to button click events
 function powerButtonClicked(event: createjs.MouseEvent) {
+    window.open('', '_self', '');
     window.close();
 }
 
