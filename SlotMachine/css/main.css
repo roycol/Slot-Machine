@@ -44,7 +44,7 @@ canvas {
 
 .winOrLose {
     position:absolute;left:80px;top:120px;
-    font:bold small-caps normal 50px HYShortSamul;
+    font:bold small-caps normal 35px Arial;
 }
 
 .jackpot {
@@ -54,7 +54,7 @@ canvas {
 
 .dspGroupLbl{
     display: inline-block;
-    position:absolute;left:45px;top:443px;
+    position:absolute;left:43px;top:443px;
 }
 
 .dspGroup {
@@ -66,8 +66,8 @@ canvas {
     float: left;    
     margin-right: 5px;
     padding-top:10px;
-    font-family:HYShortSamul;
-    font-size:18px;
+    font-family:Arial;
+    font-size:14px;
     text-align:center;
 }
 
@@ -76,8 +76,8 @@ canvas {
     width: 90px;
     height: 30px;    
     margin-right: 30px;
-    font-family:HYShortSamul;
-    font-size:18px;
+    font-family:Arial;
+    font-size:14px;
     color:#fefefe;
     text-align:center;
 }
@@ -94,7 +94,7 @@ canvas {
     border-width:medium;
     color:red;
     text-align:right;
-    font-family:HYShortSamul-Medium;
+    font-family:Arial;
     font-size:large;
     padding-right:5px;
 }
